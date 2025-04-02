@@ -1,0 +1,13 @@
+server:
+  port: 8081 # Puerto diferente para este servicio
+
+spring:
+  application:
+    name: product-service # Nombre con el que se registrará en Eureka
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/ # URL del servidor Eureka
+  instance:
+    prefer-ip-address: true # Opcional: registrarse con IP en lugar de hostname

@@ -1,0 +1,6 @@
+logs
+
+**/target/
+
+scripts/output-logs.txt
+scripts/output.txt

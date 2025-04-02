@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 1. REFERENCIA AL PADRE -->
+    <parent>
+        <groupId>com.ejemplo</groupId>
+        <artifactId>mi-aplicacion-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath> <!-- Asegúrate que la ruta al POM padre sea correcta -->
+    </parent>
+
+    <!-- 2. ARTIFACT ID ESPECÍFICO DEL MÓDULO -->
+    <artifactId>eureka-server</artifactId>
+
+    <!-- 3. Nombre y Descripción (Opcional pero bueno) -->
+    <name>Eureka Server</name>
+    <description>Servidor de descubrimiento Eureka</description>
+
+    <!-- 4. DEPENDENCIAS DEL MÓDULO (sin versiones si están gestionadas en el padre) -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <!-- La versión se hereda del <dependencyManagement> del padre -->
+        </dependency>
+        <!-- Opcional, pero común para tener un endpoint /actuator/health, etc. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+             <!-- La versión se hereda del spring-boot-starter-parent del padre -->
+        </dependency>
+
+         <!-- Dependencias de test (heredadas) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 5. BUILD (Normalmente solo necesitas declarar el plugin si no hay configuración especial) -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- La configuración y versión se heredan del <pluginManagement> del padre -->
+            </plugin>
+        </plugins>
+    </build>
+
+</project> <!-- 6. CIERRE DE LA ETIQUETA PROJECT -->

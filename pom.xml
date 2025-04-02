@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Hereda de Spring Boot Starter Parent para gestión básica -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- Asegúrate de usar una versión de Boot compatible con la de Cloud -->
+        <version>3.2.3</version> <!-- O la versión que estés usando -->
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.ejemplo</groupId>
+    <artifactId>mi-aplicacion-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!-- IMPORTANTE: El packaging del padre debe ser 'pom' -->
+    <packaging>pom</packaging>
+
+    <name>Mi Aplicacion Microservicios (Parent)</name>
+    <description>POM padre para la aplicación de microservicios de ejemplo</description>
+
+    <!-- Módulos que pertenecen a este proyecto padre -->
+    <modules>
+        <module>eureka-server</module>
+        <module>product-service</module>
+        <module>api-gateway</module>
+    </modules>
+
+    <properties>
+        <!-- Define la versión de Java -->
+        <java.version>17</java.version>
+        <!-- Define la versión de Spring Cloud centralmente -->
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <!-- Puedes definir otras versiones comunes aquí -->
+        <lombok.version>1.18.30</lombok.version>
+    </properties>
+
+    <!-- dependencyManagement: Define versiones de dependencias para los hijos -->
+    <!-- Los hijos declaran la dependencia SIN versión, heredándola de aquí -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Importa el BOM (Bill of Materials) de Spring Cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Puedes definir versiones de otras dependencias comunes si quieres -->
+            <!-- Ejemplo (aunque Lombok suele ser provided/optional):
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+             -->
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- build/pluginManagement: Define configuración de plugins para los hijos -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Asegura que todos los módulos usen el plugin de Spring Boot -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <!-- La versión viene del spring-boot-starter-parent -->
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
